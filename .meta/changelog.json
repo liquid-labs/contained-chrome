@@ -1,0 +1,16 @@
+[
+  {
+    "issues": [
+      "https://github.com/Liquid-Labs/contained-chrome/issues/1"
+    ],
+    "branch": "2021.07.19-zane@liquid-labs.com-first_draft_head_full",
+    "startTimestampLocal": "2021-07-19-1833 UTC",
+    "branchFrom": "c3f91a51f57fd9ccf20f215f621a1d72b020d7a6",
+    "description": "First draft head-full chrome",
+    "workInitiator": "zane@liquid-labs.com",
+    "branchInitiator": "zane@liquid-labs.com",
+    "involvedProjects": [
+      "@liquid-labs/contained-chrome"
+    ]
+  }
+]
