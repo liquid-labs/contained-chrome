@@ -1,9 +1,21 @@
-all: docker-build
+CONTAINER_NAME:=theliquidlabs/contained-chrome
+NPM_BIN:=$(shell npm bin)
+BASH_ROLLUP:=$(NPM_BIN)/bash-rollup
+
+SRC_FILES:=$(shell find src/docker/ -type f)
+
+BASH_BINS:=dist/contained-chrome.sh
+DIST_FILES:=$(BASH_BINS)
+
+all: docker-build $(DIST_FILES)
 
 .PHONY: all docker-build
 
-SRC_FILES:=$(shell find src/docker/ -type f)
-CONTAINER_NAME:=theliquidlabs/contained-chrome
+.DELETE_ON_ERROR:
+
+$(BASH_BINS): dist/%: src/cli/%
+	mkdir -p dist
+	$(BASH_ROLLUP) $< $@
 
 .ver-cache: package.json
 	cat $< | jq -r .version > $@
