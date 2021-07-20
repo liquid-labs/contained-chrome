@@ -107,7 +107,7 @@ log_e() {
 }
 
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ${@}" | tee -a /home/apps/boostrap.log
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ${@}" | tee -a /home/apps/bootstrap.log
 }
 
 control_c() {
