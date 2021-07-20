@@ -1,4 +1,4 @@
-CONTAINER_NAME:=theliquidlabs/contained-chrome
+IMAGE_NAME:=theliquidlabs/contained-chrome
 NPM_BIN:=$(shell npm bin)
 BASH_ROLLUP:=$(NPM_BIN)/bash-rollup
 
@@ -24,13 +24,13 @@ $(BASH_BINS): dist/%: src/cli/%
 	@# TODO: Do a version marker with the image pull so we can tell whether we need to go through a whole rebuild or not.
 	docker pull ubuntu:latest
 	@# TODO: change Dockerfile to a template and inject the version in .ver-cache
-	docker build src/docker --file src/docker/Dockerfile -t $(CONTAINER_NAME)
+	docker image build src/docker --file src/docker/Dockerfile -t $(IMAGE_NAME):dev
 	touch $@
 
 docker-build: .docker-distro-img-marker
 
 docker-run: .docker-distro-img-marker
-	src/cli/contained-chrome.sh $(CONTAINER_NAME)
+	src/cli/contained-chrome.sh $(IMAGE_NAME)
 
 docker-publish:
 	@cat "$${HOME}/.docker/config.json" | jq '.auths["https://index.docker.io/v1/"]' | grep -q '{}' || { echo -e "It does not appear that you're logged into docker.io. Try:\ndocker login --username=<your user name>"; exit 1; }

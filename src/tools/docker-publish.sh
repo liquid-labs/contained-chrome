@@ -2,6 +2,6 @@
 
 NAME=theliquidlabs/contained-chrome
 
-CONTAINER_ID="$(docker container ls --filter name=${NAME} -q)"
-docker container commit ${CONTAINER_ID} ${NAME}
-docker push ${NAME}
+# docker push ${NAME}:dev
+docker image tag ${NAME}:dev ${NAME}:latest
+docker image push ${NAME}:latest
