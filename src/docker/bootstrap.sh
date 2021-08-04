@@ -11,7 +11,11 @@ main() {
     launch_window_manager
     ###
     log_i "Starting Google Chrome..."
-    google-chrome --no-sandbox --no-first-run https://mail.google.com/mail/u/0/ &
+    # In theory, running in 'no sandbox' allows us to run chrome in a rootless (non-privileged) context. But, it's
+    # *really* not supported, and IO ops (like printing or uploading a file) seem to have a 50% chance of killing
+    # chrome.
+    # google-chrome --no-sandbox --no-first-run https://mail.google.com/mail/u/0/ &
+    google-chrome --no-first-run https://mail.google.com/mail/u/0/ &
     ###
     log_i "Starting VNC server..."
     run_vnc_server
